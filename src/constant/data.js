@@ -37,11 +37,7 @@ export const sampleItems = [
     }
   ];
   
-  export const sampleSuppliers = [
-    { id: 'SUP001', name: 'Supplier A' },
-    { id: 'SUP002', name: 'Supplier B' },
-    { id: 'SUP003', name: 'Supplier C' },
-  ];
+  export const suppliers = ["Supplier A", "Supplier B", "Supplier C", "Supplier D"];
   
 
   export const samplePurchaseOrder = {
