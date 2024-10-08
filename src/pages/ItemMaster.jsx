@@ -189,13 +189,16 @@ const ItemMaster = () => {
       <div>
         <button
           className={
-            " ms-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            " ms-10 bg-stone-50 border border-slate-200  font-bold py-2 px-4 rounded"
           }
           onClick={() => setActive(active === 0 ? 1 : 0)}
         >
           {active ? "Cancel" : "Add Item"}
         </button>
-        <Link to={"/purchase-order"} className="ms-10 bg-green-500  text-white font-bold py-2 px-4 rounded">
+        <Link
+          to={"/purchase-order"}
+          className="ms-10 bg-stone-50 border border-slate-200 font-bold py-2 px-4 rounded"
+        >
           Purchase
         </Link>
       </div>
@@ -236,19 +239,19 @@ const ItemMaster = () => {
       )}
 
       <div className="m-10">
-      <ItemTableList
-        searchItemNo={searchItemNo}
-        setSearchItemNo={setSearchItemNo}
-        searchItemName={searchItemName}
-        setSearchItemName={setSearchItemName}
-        searchCategory={searchCategory}
-        setSearchCategory={setSearchCategory}
-        searchSupplier={searchSupplier}
-        setSearchSupplier={setSearchSupplier}
-        filteredItems={filteredItems}
-        handleSetItem={handleSetItem}
-        handleDeleteItem={handleDeleteItem}
-      />
+        <ItemTableList
+          searchItemNo={searchItemNo}
+          setSearchItemNo={setSearchItemNo}
+          searchItemName={searchItemName}
+          setSearchItemName={setSearchItemName}
+          searchCategory={searchCategory}
+          setSearchCategory={setSearchCategory}
+          searchSupplier={searchSupplier}
+          setSearchSupplier={setSearchSupplier}
+          filteredItems={filteredItems}
+          handleSetItem={handleSetItem}
+          handleDeleteItem={handleDeleteItem}
+        />
       </div>
     </div>
   );

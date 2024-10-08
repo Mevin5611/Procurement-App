@@ -11,11 +11,9 @@ const PrintOrderDoc = ({
   active,
   setSelectedItems,
   setTotalAmount,
-  setSelectedSupplier
-  
+  setSelectedSupplier,
 }) => {
   const print = () => {
-    
     const printContent = document.querySelector(".printable-div").innerHTML;
 
     const printWindow = window.open("", "_blank");
@@ -63,17 +61,17 @@ const PrintOrderDoc = ({
         `);
 
     printWindow.document.close();
-    printWindow.focus(); 
+    printWindow.focus();
     printWindow.print();
     printWindow.close();
   };
 
   const handleExit = () => {
-      setHandlemPrintModal(false)
-      setSelectedItems([]);
+    setHandlemPrintModal(false);
+    setSelectedItems([]);
     setTotalAmount(0);
     setSelectedSupplier("");
-  }
+  };
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-gray-800 bg-opacity-50">
       <div className="bg-white p-6 rounded-md w-[85%] m-10">
@@ -94,7 +92,9 @@ const PrintOrderDoc = ({
           </div>
           <span
             className="font-bold text-lg text-red-700 cursor-pointer rounded-md"
-            onClick={() => active === 1 ? handleExit() : setHandlemPrintModal(false)}
+            onClick={() =>
+              active === 1 ? handleExit() : setHandlemPrintModal(false)
+            }
           >
             x
           </span>

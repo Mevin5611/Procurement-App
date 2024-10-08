@@ -81,13 +81,9 @@ const Additem = ({
                 placeholder="Select supplier"
                 value={selectedSupplier || formData.supplier}
                 onChange={handleChange}
-              />
-              <span
-                className="absolute right-3 top-3 cursor-pointer text-blue-500"
                 onClick={() => setIsSupplierModalOpen(true)}
-              >
-                search
-              </span>
+              />
+              
             </div>
           </div>
 

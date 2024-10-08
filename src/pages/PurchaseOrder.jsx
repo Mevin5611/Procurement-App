@@ -233,14 +233,14 @@ const PurchaseOrder = () => {
       <div className="flex space-x-4">
         <button
           onClick={() => selectedItems.length > 0 && setHandlemPrintModal(true)}
-          className="bg-green-500 text-white px-4 py-2 rounded"
+          className="bg-green-400 font-bold  px-4 py-2 rounded"
         >
           View Order
         </button>
 
         <button
           onClick={handleSaveOrder}
-          className="bg-blue-500 text-white px-4 py-2 rounded"
+          className="bg-blue-400 font-bold px-4 py-2 rounded"
         >
           Create Order
         </button>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const OrderHistory = () => {
   const [orderHistory, setOrderHistory] = React.useState([]);
@@ -12,7 +13,19 @@ const OrderHistory = () => {
 
   return (
     <div className="p-4 m-10">
-      <h1 className="text-2xl font-bold mb-4">Order History</h1>
+      <Link
+        to={"/"}
+        className=" font-bold border p-2 rounded-md border-dashed  bg-slate-50"
+      >
+        Manage Items
+      </Link>
+      <Link
+        to="/purchase-order"
+        className="font-bold border p-2 rounded-md ms-5 border-dashed bg-slate-50"
+      >
+        Purchase order
+      </Link>
+      <h1 className="text-2xl font-bold mb-4 mt-5">Order History</h1>
       {orderHistory.length > 0 ? (
         <div className="space-y-4">
           {orderHistory.map((order, index) => (
