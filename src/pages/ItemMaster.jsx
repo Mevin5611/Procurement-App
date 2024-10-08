@@ -4,9 +4,9 @@ import Edititem from "../components/Edititem";
 import Supplier from "../components/Supplier";
 import ItemTableList from "../components/ItemTableList";
 import { suppliers } from "../constant/data";
+import { Link } from "react-router-dom";
 
 const ItemMaster = () => {
-  
   const [items, setItems] = useState([]);
   const [active, setActive] = useState(0);
   const [isSupplierModalOpen, setIsSupplierModalOpen] = useState(false);
@@ -72,7 +72,7 @@ const ItemMaster = () => {
   const handleAddItem = () => {
     const newItem = {
       ...formData,
-      itemNo: "ITM00" + items.length + 1,
+      itemNo: `ITM00${items.length + 1}`,
     };
     setItems([...items, newItem]);
     localStorage.setItem("sampleItems", JSON.stringify([...items, newItem]));
@@ -148,6 +148,21 @@ const ItemMaster = () => {
 
     setIsEditModalOpen(true);
   };
+  const handleEditclose = (item) => {
+    setFormData({
+      itemName: "",
+      inventoryLocation: "",
+      brand: "",
+      category: "",
+      supplier: "",
+      stockUnit: "",
+      unitPrice: "",
+      status: "Enabled",
+      images: [],
+    });
+
+    setIsEditModalOpen(false);
+  };
 
   const handleEditItem = (formdata) => {
     let storedItems = JSON.parse(localStorage.getItem("sampleItems") || "[]");
@@ -170,15 +185,20 @@ const ItemMaster = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4 ms-10">Item Master</h1>
-      <button
-        className={
-          " ms-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        }
-        onClick={() => setActive(active === 0 ? 1 : 0)}
-      >
-        {active ? "Cancel" : "Add Item"}
-      </button>
+      <h1 className="text-2xl font-bold mb-4 ms-10">Items Manage Page</h1>
+      <div>
+        <button
+          className={
+            " ms-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          }
+          onClick={() => setActive(active === 0 ? 1 : 0)}
+        >
+          {active ? "Cancel" : "Add Item"}
+        </button>
+        <Link to={"/purchase-order"} className="ms-10 bg-green-500  text-white font-bold py-2 px-4 rounded">
+          Purchase
+        </Link>
+      </div>
 
       <Additem
         active={active}
@@ -199,6 +219,7 @@ const ItemMaster = () => {
           setIsSupplierModalOpen={setIsSupplierModalOpen}
           handleImageUpload={handleImageUpload}
           handleEditItem={handleEditItem}
+          handleEditclose={handleEditclose}
         />
       )}
 
@@ -214,6 +235,7 @@ const ItemMaster = () => {
         />
       )}
 
+      <div className="m-10">
       <ItemTableList
         searchItemNo={searchItemNo}
         setSearchItemNo={setSearchItemNo}
@@ -226,8 +248,8 @@ const ItemMaster = () => {
         filteredItems={filteredItems}
         handleSetItem={handleSetItem}
         handleDeleteItem={handleDeleteItem}
-        
       />
+      </div>
     </div>
   );
 };

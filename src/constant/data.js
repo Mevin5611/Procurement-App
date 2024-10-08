@@ -40,30 +40,4 @@ export const sampleItems = [
   export const suppliers = ["Supplier A", "Supplier B", "Supplier C", "Supplier D"];
   
 
-  export const samplePurchaseOrder = {
-    orderNo: 'PO001',
-    orderDate: new Date().toLocaleDateString(),
-    supplierName: 'Supplier A',
-    items: [
-      {
-        itemNo: 'ITM001',
-        itemName: 'Laptop',
-        stockUnit: 'Piece',
-        unitPrice: 50000,
-        packingUnit: 'Box',
-        orderQty: 2,
-        netAmount: 100000, // Calculated as orderQty * unitPrice
-      },
-      {
-        itemNo: 'ITM002',
-        itemName: 'Wireless Mouse',
-        stockUnit: 'Piece',
-        unitPrice: 1500,
-        packingUnit: 'Box',
-        orderQty: 5,
-        netAmount: 7500,
-      },
-    ],
-  };
   
-  export const stockUnits = ['Piece', 'Box', 'Carton', 'Pack'];

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Supplier = ({supplier,handleSelectSupplier,handleDeletesupplier,newSupplier,setNewSupplier,handleAddSupplier,setIsSupplierModalOpen}) => {
+const Supplier = ({supplier,handleSelectSupplier,handleDeletesupplier,newSupplier,setNewSupplier,handleAddSupplier,setIsSupplierModalOpen,isOrder,}) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-gray-800 bg-opacity-50">
           <div className="bg-white p-6 rounded-md w-1/3">
@@ -14,16 +14,17 @@ const Supplier = ({supplier,handleSelectSupplier,handleDeletesupplier,newSupplie
                 >
                   {sup}
 
-                  <span
+                  {isOrder ? null : <span
                     className="float-right text-red-500"
                     onClick={() => handleDeletesupplier(index)}
                   >
                     x
-                  </span>
+                  </span>}
                 </li>
               ))}
             </ul>
-            <div className="mb-4">
+            {isOrder ? null : (
+              <div className="mb-4">
               <label className="block mb-2 text-sm font-bold text-gray-700">
                 Add New Supplier
               </label>
@@ -42,6 +43,7 @@ const Supplier = ({supplier,handleSelectSupplier,handleDeletesupplier,newSupplie
                 Add Supplier
               </button>
             </div>
+            )}
 
             <button
               className="mt-4 bg-red-500 text-white px-4 py-2 rounded-md"

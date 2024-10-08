@@ -8,6 +8,7 @@ const Edititem = ({
   formData,
   handleChange,
   setIsSupplierModalOpen,
+  handleEditclose
 }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-gray-800 bg-opacity-50">
@@ -16,7 +17,7 @@ const Edititem = ({
           <h2 className="text-lg font-bold mb-4">Edit Item</h2>
           <span
             className="font-bold text-lg text-red-700 cursor-pointer rounded-md"
-            onClick={() => setIsEditModalOpen(false)}
+            onClick={handleEditclose}
           >
             x
           </span>
