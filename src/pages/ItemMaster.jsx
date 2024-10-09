@@ -13,6 +13,7 @@ const ItemMaster = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedSupplier, setSelectedSupplier] = useState("");
   const [newSupplier, setNewSupplier] = useState("");
+  const [errors, setErrors] = useState({});
   const [supplier, setSupplier] = useState([]);
 
   const [formData, setFormData] = useState({
@@ -88,6 +89,29 @@ const ItemMaster = () => {
       status: "Enabled",
       images: [],
     });
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!formData.itemName) newErrors.itemName = "Item Name is required";
+    if (!formData.inventoryLocation) newErrors.inventoryLocation = "Inventory Location is required";
+    if (!formData.brand) newErrors.brand = "Brand is required";
+    if (!formData.category) newErrors.category = "Category is required";
+    if (!selectedSupplier && !formData.supplier) newErrors.supplier = "Supplier is required";
+    if (!formData.stockUnit) newErrors.stockUnit = "Stock Unit is required";
+    if (!formData.unitPrice || formData.unitPrice <= 0) newErrors.unitPrice = "Unit Price must be greater than 0";
+
+    setErrors(newErrors);
+    
+    // Return true if no errors
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleAddItemWithValidation = () => {
+    if (validateForm()) {
+      handleAddItem();  
+    }
   };
 
   const handleAddSupplier = () => {
@@ -205,12 +229,13 @@ const ItemMaster = () => {
 
       <Additem
         active={active}
-        handleAddItem={handleAddItem}
+        handleAddItemWithValidation={handleAddItemWithValidation}
         handleChange={handleChange}
         formData={formData}
         selectedSupplier={selectedSupplier}
         setIsSupplierModalOpen={setIsSupplierModalOpen}
         handleImageUpload={handleImageUpload}
+        errors={errors}
       />
 
       {isEditModalOpen && (

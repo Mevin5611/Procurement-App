@@ -4,10 +4,11 @@ const Additem = ({
   active,
   formData,
   handleChange,
-  handleAddItem,
+  handleAddItemWithValidation,
   selectedSupplier,
   setIsSupplierModalOpen,
   handleImageUpload,
+  errors
 }) => {
   return (
     <div>
@@ -25,6 +26,7 @@ const Additem = ({
               onChange={handleChange}
               placeholder="Enter item name"
             />
+            {errors.itemName && <p className="text-red-500 text-sm">{errors.itemName}</p>}
           </div>
 
           <div>
@@ -39,6 +41,7 @@ const Additem = ({
               value={formData.inventoryLocation}
               onChange={handleChange}
             />
+            {errors.inventoryLocation && <p className="text-red-500 text-sm">{errors.inventoryLocation}</p>}
           </div>
 
           <div>
@@ -53,6 +56,7 @@ const Additem = ({
               value={formData.brand}
               onChange={handleChange}
             />
+            {errors.brand && <p className="text-red-500 text-sm">{errors.brand}</p>}
           </div>
 
           <div>
@@ -67,6 +71,7 @@ const Additem = ({
               value={formData.category}
               onChange={handleChange}
             />
+            {errors.category && <p className="text-red-500 text-sm">{errors.category}</p>}
           </div>
 
           <div>
@@ -83,7 +88,7 @@ const Additem = ({
                 onChange={handleChange}
                 onClick={() => setIsSupplierModalOpen(true)}
               />
-              
+              {errors.supplier && <p className="text-red-500 text-sm">{errors.supplier}</p>}
             </div>
           </div>
 
@@ -102,6 +107,7 @@ const Additem = ({
               <option>Box</option>
               <option>Carton</option>
             </select>
+            {errors.stockUnit && <p className="text-red-500 text-sm">{errors.stockUnit}</p>}
           </div>
 
           <div>
@@ -116,7 +122,9 @@ const Additem = ({
               value={formData.unitPrice}
               onChange={handleChange}
             />
+            {errors.unitPrice && <p className="text-red-500 text-sm">{errors.unitPrice}</p>}
           </div>
+
           <div>
             <label className="block mb-2 text-sm font-bold text-gray-700">
               Item Images
@@ -129,12 +137,11 @@ const Additem = ({
             />
           </div>
 
-          
           <div className=" flex items-end">
             <button
               type="button"
-              onClick={handleAddItem}
-              className="bg-blue-500 text-white w-full p-2 border rounded-md focus:outline-none    "
+              onClick={handleAddItemWithValidation}
+              className="bg-blue-500 text-white w-full p-2 border rounded-md focus:outline-none"
             >
               Add Item
             </button>

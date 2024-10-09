@@ -95,8 +95,21 @@ const PurchaseOrder = () => {
     XLSX.writeFile(workbook, `PurchaseOrder_${orderNo}.xlsx`);
   };
 
-  // Save Order
+  //create
   const handleSaveOrder = () => {
+    if (!selectedSupplier) {
+      alert("Please select a supplier.");
+      return;
+    }
+  
+    
+    if (selectedItems.length === 0) {
+      alert("Please add at least one item.");
+      return;
+    }
+  
+    
+    
     const newOrder = {
       orderNo: orderNo,
       orderDate,
@@ -116,6 +129,20 @@ const PurchaseOrder = () => {
     
     
   };
+
+  const handlePreviewOrder = () => {
+    if (!selectedSupplier) {
+      alert("Please select a supplier.");
+      return;
+    }
+  
+    
+    if (selectedItems.length === 0) {
+      alert("Please add at least one item.");
+      return;
+    }
+    setHandlemPrintModal(true)
+  }
 
   const [searchItemNo, setSearchItemNo] = useState("");
   const [searchItemName, setSearchItemName] = useState("");
@@ -232,7 +259,7 @@ const PurchaseOrder = () => {
 
       <div className="flex space-x-4">
         <button
-          onClick={() => selectedItems.length > 0 && setHandlemPrintModal(true)}
+          onClick={handlePreviewOrder}
           className="bg-green-400 font-bold  px-4 py-2 rounded"
         >
           View Order
